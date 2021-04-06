@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import { Context } from '../Context';
 
 export class Tracks extends Component {
   render() {
     return (
-      <div>
-        <h1>Tracks!</h1>
-      </div>
+      <Context>
+        {value => {
+          console.log(value);
+          return <h1>Tracks</h1>
+        }}
+      </Context>
     )
   }
 }
