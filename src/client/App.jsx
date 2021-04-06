@@ -1,10 +1,11 @@
 import React from 'react';
-import "./styles/App.css";
+import Navbar from './components/NavBar';
+// import "./styles/App.css";
 
 const App = () => {
   return (
     <div>
-      <h3>This is your Application</h3>
+      <Navbar/>
     </div>
   )
 };

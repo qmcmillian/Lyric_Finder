@@ -104,3 +104,4 @@ dist
 .tern-port
 # React Bundle
 public/bundle.js
+bundle.js
