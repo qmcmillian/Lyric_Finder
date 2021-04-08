@@ -6,7 +6,7 @@ export class Tracks extends Component {
     return (
       <Context>
         {value => {
-          console.log(value);
+          // console.log(value);
           return <h1>Tracks</h1>
         }}
       </Context>
