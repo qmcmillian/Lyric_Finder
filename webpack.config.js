@@ -1,7 +1,9 @@
-var path = require('path');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
+const path = require('path');
 
-var ENTRY_PATH= path.join(__dirname, 'src/client/index.jsx');
-var OUT_PATH= path.join(__dirname, 'public');
+const ENTRY_PATH= path.join(__dirname, 'src/client/index.jsx');
+const OUT_PATH= path.join(__dirname, 'public');
 
 module.exports = {
   mode: 'development',
@@ -41,5 +43,10 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.config().parsed)
+    })
+  ]
 };
