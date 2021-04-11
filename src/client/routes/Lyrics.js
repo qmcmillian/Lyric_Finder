@@ -22,7 +22,8 @@ const Lyrics = (props) => {
       )
     })
     .then(res => {
-      setTrack(res.data.message.body.track)
+      setTrack(res.data.message.body.track);
+      console.log(res.data.message.body)
     })
     .catch(err => console.log(err));
   }, []);
@@ -41,10 +42,20 @@ const Lyrics = (props) => {
           <p className="card-text">{lyrics.lyrics_body}</p>
         </div>
         </div>
+        <ul className="list-group mt-3">
+        <li className="list-group-item">
+            <strong>Genre</strong>: {track.primary_genres.music_genre_list[0].music_genre.music_genre_name_extended}
+          </li>
+          <li className="list-group-item">
+            <strong>Album</strong>: {track.album_name}
+          </li>
+          <li className="list-group-item">
+            <strong>Explicit</strong>: {track.explicit === 1 ? 'Yes' : 'No'}
+          </li>
+        </ul>
       </React.Fragment>
     )
   }
-
 }
 
 export default Lyrics

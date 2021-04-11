@@ -8,7 +8,7 @@ const Tracks = () => {
   const { track_list, heading } = state;
 
   return (
-    <Context>
+    <Context.Consumer>
       {value => {
         const { track_list } = value[0];
 
@@ -33,7 +33,7 @@ const Tracks = () => {
           )
         }
       }}
-    </Context>
+    </Context.Consumer>
   )
 }
 
