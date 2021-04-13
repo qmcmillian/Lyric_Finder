@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Navbar from './components/NavBar';
-import Index from './routes/Index';
+import Home from './routes/Home';
 import Lyrics from './routes/Lyrics';
 import { ContextController } from './components/Context';
 // import "./styles/App.css";
@@ -16,7 +16,7 @@ const App = () => {
             <Switch>
               <Route
                 exact path="/"
-                component={Index}
+                component={Home}
               />
               <Route
                 exact path="/lyrics/track/:id"

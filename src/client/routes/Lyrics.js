@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Spinner from '../components/spinner/Spinner';
-
+import Moment from 'react-moment';
 
 const Lyrics = (props) => {
   const [track, setTrack] = useState({});
@@ -17,6 +17,7 @@ const Lyrics = (props) => {
     axios.get(`https://cors.bridged.cc/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${trackId}&apikey=${process.env.REACT_APP_MM_KEY}`)
     .then(res => {
       setLyrics(res.data.message.body.lyrics);
+      console.log('lyrics', res.data)
       return (
         axios.get(`https://cors.bridged.cc/http://api.musixmatch.com/ws/1.1/track.get?track_id=${trackId}&apikey=${process.env.REACT_APP_MM_KEY}`)
       )
@@ -50,8 +51,14 @@ const Lyrics = (props) => {
             <strong>Album</strong>: {track.album_name}
           </li>
           <li className="list-group-item">
-            <strong>Explicit</strong>: {track.explicit === 1 ? 'Yes' : 'No'}
+            <strong>Explicit Content</strong>: {track.explicit === 1 ? 'Yes' : 'No'}
           </li>
+          {/* <li className="list-group-item">
+            <strong>Release Date</strong>:{" "}
+            <Moment format="MM/DD/YYYY">
+              {track.track.first_release_date}
+            </Moment>
+          </li> */}
         </ul>
       </React.Fragment>
     )
