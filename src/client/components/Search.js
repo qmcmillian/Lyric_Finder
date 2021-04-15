@@ -7,10 +7,19 @@ const Search = () => {
   const [userInput, setUserInput] = useState("");
   const [trackTitle, setTrackTitle] = useState("");
 
+  const findTrack = () => {
+    axios.get(`https://cors.bridged.cc/http://api.musixmatch.com/ws/1.1/track.search?q_track=${trackTitle}&page_size=10&page=1&s_track_rating=desc&apikey=${process.env.REACT_APP_MM_KEY}`)
+    .then(res => {
+      let track_list = res.data.message.body.track_list;
+      setState({ track_list: track_list, heading: "Search Results" });
+    })
+    .catch(err => console.log(err));
+  };
 
-  const findTrack = event => {
+  const handleSubmit = event => {
     event.preventDefault();
     setTrackTitle(userInput);
+    findTrack();
   };
 
   const onChange = event => {
@@ -23,7 +32,7 @@ const Search = () => {
         <i className="fas fa-music" /> Search For A Song
       </h1>
       <p className="lead text-center">Get the lyrics for any song</p>
-      <form onSubmit={findTrack}>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <input
             type="text"
