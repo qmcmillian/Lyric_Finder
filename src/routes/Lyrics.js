@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import { getLyrics } from '../helpers/api_helpers';
 import { Link } from 'react-router-dom';
 import Spinner from '../components/spinner/Spinner';
 import Moment from 'react-moment';
@@ -14,19 +14,14 @@ const Lyrics = (props) => {
   const empytyState = Object.keys(track).length === 0 || Object.keys(lyrics).length === 0;
 
   useEffect(() => {
-    axios.get(`https://cors.bridged.cc/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${trackId}&apikey=${process.env.REACT_APP_MM_KEY}`)
+    getLyrics(trackId)
     .then(res => {
-      setLyrics(res.data.message.body.lyrics);
-      console.log('lyrics', res.data)
-      return (
-        axios.get(`https://cors.bridged.cc/http://api.musixmatch.com/ws/1.1/track.get?track_id=${trackId}&apikey=${process.env.REACT_APP_MM_KEY}`)
-      )
+      setLyrics(res[0].lyrics);
+      setTrack(res[1].track);
     })
-    .then(res => {
-      setTrack(res.data.message.body.track);
-      console.log(res.data.message.body)
+    .catch(error => {
+      console.log(err)
     })
-    .catch(err => console.log(err));
   }, []);
 
   if (notDefined || empytyState) {
@@ -53,12 +48,6 @@ const Lyrics = (props) => {
           <li className="list-group-item">
             <strong>Explicit Content</strong>: {track.explicit === 1 ? 'Yes' : 'No'}
           </li>
-          {/* <li className="list-group-item">
-            <strong>Release Date</strong>:{" "}
-            <Moment format="MM/DD/YYYY">
-              {track.track.first_release_date}
-            </Moment>
-          </li> */}
         </ul>
       </React.Fragment>
     )

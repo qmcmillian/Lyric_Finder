@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from 'axios';
 import { Context } from '../components/Context';
+import { getTracks } from '../helpers/api_helpers';
 
 const Search = () => {
   const [state, setState] = useContext(Context);
@@ -8,7 +8,7 @@ const Search = () => {
   const [trackTitle, setTrackTitle] = useState("");
 
   const findTrack = () => {
-    axios.get(`https://cors.bridged.cc/http://api.musixmatch.com/ws/1.1/track.search?q_track=${trackTitle}&page_size=10&page=1&s_track_rating=desc&apikey=${process.env.REACT_APP_MM_KEY}`)
+    getTracks(trackTitle)
     .then(res => {
       let track_list = res.data.message.body.track_list;
       setState({ track_list: track_list, heading: "Search Results" });
