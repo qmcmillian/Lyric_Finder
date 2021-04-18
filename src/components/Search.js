@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
-import { Context} from '../components/Context';
+import { Context } from '../components/Context';
 
 const Search = () => {
   const [state, setState] = useContext(Context);

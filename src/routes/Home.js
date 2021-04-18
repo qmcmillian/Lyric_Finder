@@ -1,5 +1,5 @@
 import React from 'react';
-import Tracks from '../components/tracks/Tracks';
+import Tracks from '../components/Tracks';
 import Search from '../components/Search';
 
 const Home = () => {

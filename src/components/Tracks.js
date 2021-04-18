@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { Context } from '../Context';
-import Spinner from '../spinner/Spinner';
-import Track from '../tracks/Track';
+import { Context } from './Context';
+import Spinner from '../components/spinner/Spinner';
+import Track from '../components/Track';
 
 const Tracks = () => {
   const [state] = useContext(Context);

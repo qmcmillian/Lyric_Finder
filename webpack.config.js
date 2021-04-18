@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const dotenv = require('dotenv');
 const path = require('path');
 
-const ENTRY_PATH= path.join(__dirname, 'src/client/index.jsx');
+const ENTRY_PATH= path.join(__dirname, 'src/index.jsx');
 const OUT_PATH= path.join(__dirname, 'public');
 
 module.exports = {
